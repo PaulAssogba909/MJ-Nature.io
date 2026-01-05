@@ -1,7 +1,10 @@
 // Menu toggle for mobile
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
+  const mobileMenu = document.querySelector("form.contact-form")?.addEventListener("submit", function (e) {
+  ...
+});
+
 
   if (!menuToggle || !mobileMenu) return;
 
