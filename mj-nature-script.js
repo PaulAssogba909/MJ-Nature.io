@@ -1,19 +1,18 @@
+
 // Menu toggle for mobile
 document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.querySelector("form.contact-form")?.addEventListener("submit", function (e) {
-  ...
-});
-
+  const mobileMenu = document.querySelector(".mobile-menu");
 
   if (!menuToggle || !mobileMenu) return;
 
   menuToggle.addEventListener("click", () => {
+    console.log("CLICK MENU");
     mobileMenu.classList.toggle("active");
     menuToggle.classList.toggle("active");
   });
 
-  // Close menu when clicking on a link (inside the mobile menu)
+  // Close menu when clicking on a link
   mobileMenu.querySelectorAll(".nav-link").forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu.classList.remove("active");
@@ -21,6 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Form submission handler (séparé)
+document.querySelector("form.contact-form")?.addEventListener("submit", function (e) {
+  e.preventDefault();
+  // ... ton code ici
+});
+
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
