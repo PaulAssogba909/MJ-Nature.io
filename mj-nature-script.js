@@ -1,22 +1,11 @@
 // Menu toggle for mobile
 function toggleMenu() {
-  const nav = document.querySelector(".nav")
+  const mobileMenu = document.querySelector(".mobile-menu")
   const menuToggle = document.querySelector(".menu-toggle")
 
-  if (nav.style.display === "flex") {
-    nav.style.display = "none"
-    menuToggle.classList.remove("active")
-  } else {
-    nav.style.display = "flex"
-    nav.style.flexDirection = "column"
-    nav.style.position = "absolute"
-    nav.style.top = "80px"
-    nav.style.left = "0"
-    nav.style.right = "0"
-    nav.style.background = "white"
-    nav.style.padding = "1.5rem"
-    nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)"
-    menuToggle.classList.add("active")
+  if (mobileMenu) {
+    mobileMenu.classList.toggle("active")
+    menuToggle.classList.toggle("active")
   }
 }
 
@@ -47,8 +36,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         block: "start",
       })
       // Close mobile menu if open
-      const nav = document.querySelector(".nav")
-      if (window.innerWidth <= 768 && nav.style.display === "flex") {
+      const mobileMenu = document.querySelector(".mobile-menu")
+      if (window.innerWidth <= 768 && mobileMenu.classList.contains("active")) {
         toggleMenu()
       }
     }
