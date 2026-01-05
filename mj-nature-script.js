@@ -86,3 +86,12 @@ document.querySelectorAll(".product-card, .feature-card, .testimonial-card, .faq
   card.style.transition = "opacity 0.6s ease, transform 0.6s ease"
   observer.observe(card)
 })
+// Menu mobile toggle
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+  });
+}
