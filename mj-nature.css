@@ -103,7 +103,7 @@ body {
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: var(--foreground);
+  background: white;
   border-radius: 2px;
   transition: all 0.3s;
 }
