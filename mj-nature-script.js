@@ -1,13 +1,37 @@
 // Menu toggle for mobile
 document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle")
-  const mobileMenu = document.querySelector(".mobile-menu")
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("active")
-      menuToggle.classList.toggle("active")
-    })
+  if (!menuToggle || !mobileMenu) return;
+
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  // Close menu when clicking on a link
+  mobileMenu.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+      menuToggle.classList.remove("active");
+    });
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const href = this.getAttribute("href");
+    const target = document.querySelector(href);
+
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    
+});
 
     // Close menu when clicking on a link
     const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link")
@@ -36,16 +60,20 @@ function toggleFaq(button) {
   }
 }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
+// Close mobile menu if open
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const menuToggle = document.getElementById("menuToggle");
+
+    if (
+      window.innerWidth <= 768 &&
+      mobileMenu &&
+      menuToggle &&
+      mobileMenu.classList.contains("active")
+    ) {
+      mobileMenu.classList.remove("active");
+      menuToggle.classList.remove("active");
+    }
+  });
       // Close mobile menu if open
       const mobileMenu = document.querySelector(".mobile-menu")
       if (window.innerWidth <= 768 && mobileMenu.classList.contains("active")) {
