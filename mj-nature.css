@@ -101,11 +101,13 @@ body {
 }
 
 .menu-toggle span {
+  display: block;
   width: 25px;
   height: 3px;
-  background: var(--foreground);
-  border-radius: 2px;
-  transition: all 0.3s;
+  background: white;  /* <-- Modifié en blanc */
+  margin: 5px 0;
+  transition: 0.3s;
+}
 }
 /* ADDED: Mobile menu overlay styles */
 .mobile-menu {
