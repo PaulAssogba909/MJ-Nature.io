@@ -113,8 +113,9 @@ body {
 /* ADDED: Mobile menu overlay styles */
 .mobile-menu {
   position: fixed;
-  top: 80px;
+  top: 0;  
   left: 0;
+  padding-top: 80px;  
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.95);
