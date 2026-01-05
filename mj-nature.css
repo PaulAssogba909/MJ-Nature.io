@@ -52,19 +52,9 @@ body {
   height: 80px;
 }
 
-.logo-text {
-  font-size: 1.875rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: transform 0.3s;
-}
 
-.logo:hover .logo-text {
-  transform: scale(1.05);
-}
+
+
 
 .logo-img {
   height: 70px;
@@ -72,9 +62,7 @@ body {
   transition: transform 0.3s;
 }
 
-.logo:hover .logo-img {
-  transform: scale(1.05);
-}
+
 
 .nav {
   display: flex;
