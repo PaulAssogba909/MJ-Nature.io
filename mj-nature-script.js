@@ -3,27 +3,22 @@ function toggleMenu() {
   const nav = document.querySelector(".nav")
   const menuToggle = document.querySelector(".menu-toggle")
 
- // Menu toggle for mobile
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle")
-  const mobileMenu = document.querySelector(".mobile-menu")
-
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("active")
-      menuToggle.classList.toggle("active")
-    })
-
-    // Close menu when clicking on a link
-    const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link")
-    mobileMenuLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active")
-        menuToggle.classList.toggle("active")
-      })
-    })
+  if (nav.style.display === "flex") {
+    nav.style.display = "none"
+    menuToggle.classList.remove("active")
+  } else {
+    nav.style.display = "flex"
+    nav.style.flexDirection = "column"
+    nav.style.position = "absolute"
+    nav.style.top = "80px"
+    nav.style.left = "0"
+    nav.style.right = "0"
+    nav.style.background = "white"
+    nav.style.padding = "1.5rem"
+    nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)"
+    menuToggle.classList.add("active")
   }
-})
+}
 
 // FAQ toggle
 function toggleFaq(button) {
