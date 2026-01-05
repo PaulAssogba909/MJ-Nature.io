@@ -1,11 +1,22 @@
 // Menu toggle for mobile
 function toggleMenu() {
-  const mobileMenu = document.querySelector(".mobile-menu")
+  const nav = document.querySelector(".nav")
   const menuToggle = document.querySelector(".menu-toggle")
 
-  if (mobileMenu) {
-    mobileMenu.classList.toggle("active")
-    menuToggle.classList.toggle("active")
+  if (nav.style.display === "flex") {
+    nav.style.display = "none"
+    menuToggle.classList.remove("active")
+  } else {
+    nav.style.display = "flex"
+    nav.style.flexDirection = "column"
+    nav.style.position = "absolute"
+    nav.style.top = "80px"
+    nav.style.left = "0"
+    nav.style.right = "0"
+    nav.style.background = "white"
+    nav.style.padding = "1.5rem"
+    nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)"
+    menuToggle.classList.add("active")
   }
 }
 
@@ -36,8 +47,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         block: "start",
       })
       // Close mobile menu if open
-      const mobileMenu = document.querySelector(".mobile-menu")
-      if (window.innerWidth <= 768 && mobileMenu.classList.contains("active")) {
+      const nav = document.querySelector(".nav")
+      if (window.innerWidth <= 768 && nav.style.display === "flex") {
         toggleMenu()
       }
     }
@@ -86,12 +97,3 @@ document.querySelectorAll(".product-card, .feature-card, .testimonial-card, .faq
   card.style.transition = "opacity 0.6s ease, transform 0.6s ease"
   observer.observe(card)
 })
-// Menu mobile toggle
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.querySelector('.mobile-menu');
-
-if (menuToggle && mobileMenu) {
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-  });
-}
