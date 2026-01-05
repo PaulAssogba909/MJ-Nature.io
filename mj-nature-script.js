@@ -31,7 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
 
     
-});
 
     // Close menu when clicking on a link
     const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link")
@@ -74,16 +73,7 @@ function toggleFaq(button) {
       menuToggle.classList.remove("active");
     }
   });
-      // Close mobile menu if open
-      const mobileMenu = document.querySelector(".mobile-menu")
-      if (window.innerWidth <= 768 && mobileMenu.classList.contains("active")) {
-        mobileMenu.classList.toggle("active")
-        document.getElementById("menuToggle").classList.toggle("active")
-      }
-    }
-  })
-})
-
+      
 // Form submission handler
 document.querySelector(".contact-form form")?.addEventListener("submit", function (e) {
   e.preventDefault()
