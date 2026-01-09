@@ -1,113 +1,143 @@
-
 // Menu toggle for mobile
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
+function toggleMenu() {
+  const nav = document.querySelector(".nav")
+  const menuToggle = document.querySelector(".menu-toggle")
 
-  if (!menuToggle || !mobileMenu) return;
+  if (nav.style.display === "flex") {
+    nav.style.display = "none"
+    menuToggle.classList.remove("active")
+  } else {
+    nav.style.display = "flex"
+    nav.style.flexDirection = "column"
+    nav.style.position = "absolute"
+    nav.style.top = "80px"
+    nav.style.left = "0"
+    nav.style.right = "0"
+    nav.style.background = "white"
+    nav.style.padding = "1.5rem"
+    nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)"
+    menuToggle.classList.add("active")
+  }
+}
 
-  menuToggle.addEventListener("click", () => {
-    console.log("CLICK MENU");
-    mobileMenu.classList.toggle("active");
-    menuToggle.classList.toggle("active");
-  });
+// FAQ toggle
+function toggleFaq(button) {
+  const faqItem = button.closest(".faq-item")
+  const wasActive = faqItem.classList.contains("active")
 
-  // Close menu when clicking on a link
-  mobileMenu.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("active");
-      menuToggle.classList.remove("active");
-    });
-  });
-});
+  // Close all FAQ items
+  document.querySelectorAll(".faq-item").forEach((item) => {
+    item.classList.remove("active")
+  })
 
-// Form submission handler (séparé)
-document.querySelector("form.contact-form")?.addEventListener("submit", function (e) {
-  e.preventDefault();
-  // ... ton code ici
-});
-
+  // If this item wasn't active, open it
+  if (!wasActive) {
+    faqItem.classList.add("active")
+  }
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    const href = this.getAttribute("href");
-    const target = document.querySelector(href);
-
-    if (!target) return;
-
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // Close mobile menu if open
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const menuToggle = document.getElementById("menuToggle");
-
-    if (
-      window.innerWidth <= 768 &&
-      mobileMenu &&
-      menuToggle &&
-      mobileMenu.classList.contains("active")
-    ) {
-      mobileMenu.classList.remove("active");
-      menuToggle.classList.remove("active");
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+      // Close mobile menu if open
+      const nav = document.querySelector(".nav")
+      if (window.innerWidth <= 768 && nav.style.display === "flex") {
+        toggleMenu()
+      }
     }
-  });
-});
+  })
+})
 
-// FAQ toggle
-function toggleFaq(button) {
-  const faqItem = button.closest(".faq-item");
-  const wasActive = faqItem.classList.contains("active");
+// Form submission handler
+document.querySelector(".contact-form form")?.addEventListener("submit", function (e) {
+  e.preventDefault()
 
-  document.querySelectorAll(".faq-item").forEach((item) => {
-    item.classList.remove("active");
-  });
+  const name = this.querySelector("#name").value
+  const email = this.querySelector("#email").value
+  const phone = this.querySelector("#phone").value
+  const message = this.querySelector("#message").value
 
-  if (!wasActive) {
-    faqItem.classList.add("active");
-  }
-}
+  // Create WhatsApp message
+  const whatsappMessage = `Nouveau message de ${name}%0A%0AEmail: ${email}%0ATéléphone: ${phone}%0A%0AMessage:%0A${message}`
 
-// Form submission handler (ton form a la classe contact-form)
-document.querySelector("form.contact-form")?.addEventListener("submit", function (e) {
-  e.preventDefault();
+  // Redirect to WhatsApp
+  window.open(`https://wa.me/c/22941764144?text=${whatsappMessage}`, "_blank")
 
-  const name = this.querySelector("#name").value;
-  const email = this.querySelector("#email").value;
-  const phone = this.querySelector("#phone").value;
-  const message = this.querySelector("#message").value;
-
-  const whatsappMessage = `Nouveau message de ${encodeURIComponent(name)}%0A%0AEmail: ${encodeURIComponent(
-    email
-  )}%0ATéléphone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
-
-  window.open(`https://wa.me/22941764144?text=${whatsappMessage}`, "_blank");
-
-  this.reset();
-  alert("Merci pour votre message ! Nous vous redirigerons vers WhatsApp.");
-});
+  // Reset form
+  this.reset()
+  alert("Merci pour votre message ! Nous vous redirigerons vers WhatsApp.")
+})
 
 // Add scroll animation
 const observerOptions = {
   threshold: 0.1,
   rootMargin: "0px 0px -50px 0px",
-};
+}
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
+      entry.target.style.opacity = "1"
+      entry.target.style.transform = "translateY(0)"
     }
-  });
-}, observerOptions);
+  })
+}, observerOptions)
 
-document
-  .querySelectorAll(".product-card, .feature-card, .testimonial-card, .faq-item")
-  .forEach((card) => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(30px)";
-    card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    observer.observe(card);
+// Observe all cards
+document.querySelectorAll(".product-card, .feature-card, .testimonial-card, .faq-item").forEach((card) => {
+  card.style.opacity = "0"
+  card.style.transform = "translateY(30px)"
+  card.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+  observer.observe(card)
+})
+
+// Gestion du formulaire de contact
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // ✅ Option B : sujet dynamique
+    const name = (this.querySelector('#name')?.value || '').trim() || 'un visiteur';
+    const subjectInput = this.querySelector('#subject');
+    if (subjectInput) {
+      subjectInput.value = `MJ Nature — Nouveau message de ${name}`;
+    }
+
+    const formData = new FormData(this);
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.innerHTML = 'Envoi en cours...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('https://formspree.io/f/xreezzvw', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        alert('Message envoyé avec succès ! Nous vous répondrons bientôt.');
+        this.reset();
+      } else {
+        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      }
+    } catch (error) {
+      alert('Erreur de connexion. Veuillez réessayer plus tard.');
+    }
+
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
   });
+}
+
+
