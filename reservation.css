@@ -1,0 +1,418 @@
+/* reservation.css */
+
+/* 1) Variables (tu utilisais var(--...) sans les definir) */
+:root{
+  --background: #ffffff;
+  --muted: #f3f4f6;
+  --border: #e5e7eb;
+  --primary: #22c55e;
+  --secondary: #f39c12;
+  --foreground: #111827;
+  --muted-foreground: #6b7280;
+
+  --radius: 1.5rem;
+}
+
+/* 2) Base */
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.5;
+}
+
+/* 3) Layout utils (classes utilisees dans ton HTML) */
+.container{
+  width: min(1100px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.gradient-text{
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 4) Header (classes utilisees dans ton HTML) */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.logo{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img{
+  height: 70px;
+  width: 120px;
+  transition: transform 0.3s;
+}
+
+.nav{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: var(--foreground);
+  opacity: 0.85;
+  font-weight: 600;
+}
+.nav-link:hover {
+  color: var(--primary);
+}
+
+
+
+/* 5) Boutons (classes utilisees dans ton HTML) */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+  font-size: 15px;
+}
+
+.btn:active{
+  transform: translateY(1px);
+}
+
+.btn-outline{
+  background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.btn-outline:hover{
+  border-color: var(--foreground);
+}
+
+.btn-primary{
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  
+}
+
+.btn-primary:hover{
+  filter: brightness(0.98);
+}
+
+.btn-lg{
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.9rem;
+}
+
+.btn-full{
+  width: 100%;
+  
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+}
+
+/* 6) Reservation Page Styles */
+.reservation-section{
+  min-height: calc(100vh - 80px);
+  padding: 6rem 0 4rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--muted) 50%, var(--background) 100%);
+}
+
+.reservation-header{
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.reservation-header h1{
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+}
+
+.reservation-subtitle{
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.reservation-content{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 7) Formulaire (classes utilisees dans ton HTML) */
+.reservation-form-wrapper{
+  background: #fff;
+  padding: 3rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.reservation-form{
+  display: grid;
+  gap: 1.2rem;
+}
+
+.form-group{
+  display: grid;
+  gap: 0.5rem;
+}
+
+label{
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+input, textarea, select{
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea{
+  resize: vertical;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+.reservation-form select{
+  cursor: pointer;
+}
+
+/* 8) Confirmation Section */
+.confirmation-wrapper{
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn{
+  from{ opacity: 0; transform: translateY(20px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.confirmation-card{
+  background: #fff;
+  padding: 3rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.success-icon{
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 50%;
+  color: #fff;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn{
+  from{ transform: scale(0); }
+  to{ transform: scale(1); }
+}
+
+.success-icon svg{
+  width: 3rem;
+  height: 3rem;
+}
+
+.confirmation-card h2{
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  color: var(--primary);
+}
+
+.confirmation-message{
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+/* 9) Timer Card */
+.timer-card{
+  background: linear-gradient(135deg, rgba(111, 186, 44, 0.12) 0%, rgba(243, 156, 18, 0.12) 100%);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.timer-card h3{
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 2rem;
+  color: var(--foreground);
+}
+
+.timer-display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.timer-unit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  min-width: 100px;
+}
+
+.timer-value{
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
+  font-family: "Courier New", monospace;
+}
+
+.timer-label{
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timer-separator{
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.timer-progress{
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.timer-progress-bar{
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 5px;
+  transition: width 1s linear;
+  animation: progressAnimation 5400s linear;
+}
+
+@keyframes progressAnimation{
+  from{ width: 100%; }
+  to{ width: 0%; }
+}
+
+.timer-note{
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.confirmation-actions{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 10) Responsive */
+@media (max-width: 768px){
+  .header .container{
+    flex-wrap: wrap;
+  }
+
+  .reservation-header h1{
+    font-size: 2rem;
+  }
+
+  .reservation-subtitle{
+    font-size: 1rem;
+  }
+
+  .reservation-form-wrapper,
+  .confirmation-card{
+    padding: 2rem;
+  }
+
+  .timer-display{
+    gap: 0.5rem;
+  }
+
+  .timer-unit{
+    padding: 1rem 1.5rem;
+    min-width: 80px;
+  }
+
+  .timer-value{
+    font-size: 2rem;
+  }
+
+  .timer-separator{
+    font-size: 2rem;
+  }
+
+  .confirmation-actions{
+    flex-direction: column;
+  }
+
+  .confirmation-actions .btn{
+    width: 100%;
+  }
+}

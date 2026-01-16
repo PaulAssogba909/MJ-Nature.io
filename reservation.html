@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation de Commande - MJ Nature</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reservation.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <!-- Fixed logo path -->
+                <img src="public/images/logo-20mj-20nature-202.jpeg" alt="MJ Nature" class="logo-img">
+            </a>
+
+            <nav class="nav">
+                <a href="index.html#produits" class="nav-link">Produits</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <a href="index.html" class="btn btn-outline">
+                Retour à l'accueil
+            </a>
+        </div>
+    </header>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <div class="reservation-header">
+                <h1 class="gradient-text">Réserver Votre Commande</h1>
+                <p class="reservation-subtitle">Remplissez le formulaire ci-dessous et recevez une confirmation dans un délai de 1 à 2 heures</p>
+            </div>
+
+            <div class="reservation-content">
+                <!-- Formulaire de réservation -->
+                <div class="reservation-form-wrapper">
+                    <form class="reservation-form" id="reservationForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Numéro de téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Ex: 22990000000">
+                        </div>
+
+                        <!-- Remplacer le select unique par une liste de produits avec quantités -->
+                        <div class="form-group">
+                            <label>Sélectionnez vos produits *</label>
+                            <div class="products-selection">
+                                <div class="product-item">
+                                    <input type="checkbox" id="product1" name="products" value="Salade de fruits">
+                                    <label for="product1">Salade de fruits</label>
+                                    <input type="number" id="qty1" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                                <div class="product-item">
+                                    <input type="checkbox" id="product2" name="products" value="Jus de fruits Naturels">
+                                    <label for="product2">Jus de fruits Naturels</label>
+                                    <input type="number" id="qty2" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                                <div class="product-item">
+                                    <input type="checkbox" id="product3" name="products" value="Baobab au lait">
+                                    <label for="product3">Baobab au lait</label>
+                                    <input type="number" id="qty3" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                                <div class="product-item">
+                                    <input type="checkbox" id="product4" name="products" value="Yaourts et Yaourt parfait">
+                                    <label for="product4">Yaourts et Yaourt parfait</label>
+                                    <input type="number" id="qty4" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                                <div class="product-item">
+                                    <input type="checkbox" id="product5" name="products" value="Sandwich">
+                                    <label for="product5">Sandwich</label>
+                                    <input type="number" id="qty5" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                                <div class="product-item">
+                                    <input type="checkbox" id="product6" name="products" value="Chips bananes">
+                                    <label for="product6">Chips bananes</label>
+                                    <input type="number" id="qty6" class="product-quantity" min="1" value="1" placeholder="Qté">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ajout des champs date et heure de livraison -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="deliveryDate">Date de livraison souhaitée *</label>
+                                <input type="date" id="deliveryDate" name="deliveryDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deliveryTime">Heure de livraison souhaitée *</label>
+                                <select id="deliveryTime" name="deliveryTime" required>
+                                    <option value="">Sélectionnez une heure</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Adresse de livraison *</label>
+                            <textarea id="address" name="address" rows="3" required placeholder="Ex: Calavi, Aïtchédji"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Notes supplémentaires (optionnel)</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Précisez vos préférences ou instructions particulières"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-full">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            Envoyer ma réservation
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Confirmation et chronomètre -->
+                <div class="confirmation-wrapper" id="confirmationSection" style="display: none;">
+                    <div class="confirmation-card">
+                        <div class="success-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <h2>Réservation envoyée avec succès !</h2>
+                        <p class="confirmation-message">
+                            Merci pour votre commande ! Nous avons bien reçu votre réservation et nous vous contacterons dans un délai de <strong>1 à 2 heures</strong> pour confirmer votre commande.
+                        </p>
+
+                        <div class="timer-card">
+                            <h3>Temps d'attente estimé</h3>
+                            <div class="timer-display">
+                                <div class="timer-unit">
+                                    <span class="timer-value" id="hours">01</span>
+                                    <span class="timer-label">Heures</span>
+                                </div>
+                                <span class="timer-separator">:</span>
+                                <div class="timer-unit">
+                                    <span class="timer-value" id="minutes">30</span>
+                                    <span class="timer-label">Minutes</span>
+                                </div>
+                                <span class="timer-separator">:</span>
+                                <div class="timer-unit">
+                                    <span class="timer-value" id="seconds">00</span>
+                                    <span class="timer-label">Secondes</span>
+                                </div>
+                            </div>
+                            <div class="timer-progress">
+                                <div class="timer-progress-bar" id="progressBar"></div>
+                            </div>
+                            <p class="timer-note">Temps restant jusqu'au délai maximum de confirmation</p>
+                        </div>
+
+                        <div class="confirmation-actions">
+                            <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+                            <button onclick="newReservation()" class="btn btn-primary">Nouvelle réservation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="reservation.js"></script>
+</body>
+</html>
