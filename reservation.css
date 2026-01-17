@@ -46,7 +46,7 @@ body{
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, var(--foreground) 0%, #1a1a1a 100%);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -78,10 +78,10 @@ body{
 }
 
 .nav-link{
+  color:white ;
   text-decoration: none;
-  color: var(--foreground);
-  opacity: 0.85;
-  font-weight: 600;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 .nav-link:hover {
   color: var(--primary);
