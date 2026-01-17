@@ -113,7 +113,7 @@ body{
 .btn-outline{
   background: transparent;
   border-color: var(--border);
-  color: var(--foreground);
+  color: white;
 }
 
 .btn-outline:hover{
